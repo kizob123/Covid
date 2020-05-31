@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <title>Covid-19_Symptom_Checker</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <style>
+            #header_name{
+                font-size: 50px;
+                background: #fa8e2e;
+            }
+            #report{
+                width: 100%;
+                height: 40px;
+                background: moccasin;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="header_name">Covid-19 Symptom Checker</div>
+        
+
+<form action="#" method="post" class="demoForm" id="demoForm">
+    
+    <fieldset>
+        <legend>Demo: Checkboxes Sharing Same Name</legend>
+    
+    <p>Select which and which symptoms \nyou are feeling at this time.</p>
+    
+    <p>
+        <label><input type="checkbox" name="sports[]" value="Fever1" /> Fever</label><br>
+        <label><input type="checkbox" name="sports[]" value="Dry Cough2" /> Dry Cough</label><br>
+        <label><input type="checkbox" name="sports[]" value="Tiredness3" /> Tiredness</label><br>
+        <label><input type="checkbox" name="sports[]" value="Aches and Pains4" /> Aches and Pains</label><br>
+        <label><input type="checkbox" name="sports[]" value="Sore Throat5" />Sore Throat</label><br>
+        <label><input type="checkbox" name="sports[]" value="Diarrhoea6" /> Diarrhoea</label><br>
+        
+        <label><input type="checkbox" name="sports[]" value="Cunjunctivitis7" /> Cunjunctivitis</label><br>
+        <label><input type="checkbox" name="sports[]" value="Dry Cough8" /> Dry Cough</label><br>
+        <label><input type="checkbox" name="sports[]" value="Headache9" /> Headache</label><br>
+        <label><input type="checkbox" name="sports[]" value="Loss of Taste or Smell10" /> Loss of Taste or Smell</label><br>
+        <label><input type="checkbox" name="sports[]" value="Skin Rash11" />Skin Rash</label><br>
+        <label><input type="checkbox" name="sports[]" value="Discoloration of Fingers or Toes12" /> Discoloration of Fingers or Toes</label><br>
+        
+        <label><input type="checkbox" name="sports[]" value="Difficult Breathing13" /> Difficult Breathing</label><br>
+        <label><input type="checkbox" name="sports[]" value="Shortness of Breath14" /> Shortness of Breath</label><br>
+        <label><input type="checkbox" name="sports[]" value="Chest Pain/Pressure15" /> Chest Pain/Pressure</label><br>
+        <label><input type="checkbox" name="sports[]" value="Loss of Speech or Movement16" /> Loss of Speech or Movement</label><br>
+   
+    </p>
+    
+    </fieldset>
+    
+</form>
+        <div id="report"></div>
+
+        <script type="text/javascript" src="jquery.js"></script>
+    <script type="text/javascript">
+var ixi=0;
+var sports = document.forms['demoForm'].elements[ 'sports[]' ];
+var x = document.getElementById("report");
+var xx1={};
+
+
+// using reference to sports obtained above
+for (var i=0, len=sports.length; i<len; i++) {
+    sports[i].onclick = doSomething;
+}
+
+// access properties of checkbox clicked using 'this' keyword
+function doSomething() {
+    if ( this.checked ) {
+        ixi=ixi+1;
+        //alert( this.value );
+        var xx = this.value;
+        xx =""+xx[xx.length-1];
+        if((xx[xx.length-2])==="1")
+            xx="1"+xx;
+        
+        alert(xx1);
+        if(ixi>5&&parseInt(xx1)<"9"){
+            x.style.fontsize= "40px";
+            x.style.fontstyle= "bold";
+            x.style.color= "blue";
+        x.innerHTML ="May be you should go for test.";
+}
+else if(parseInt(xx1)>9)
+{
+    x.style.color= "red";
+        x.innerHTML ="You definitely should go for test.";
+}
+    } else {
+        x.innerHTML ="";
+       ixi=ixi-1;
+    }
+    //alert( ixi );
+    
+}
+
+</script>
+    </body>
+</html>
