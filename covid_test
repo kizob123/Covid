@@ -19,6 +19,11 @@ and open the template in the editor.
                 height: 40px;
                 background: moccasin;
             }
+            #datasets{
+                width: 100%;
+                height: 70px;
+                background: moccasin;
+            }
         </style>
     </head>
     <body>
@@ -28,7 +33,7 @@ and open the template in the editor.
 <form action="#" method="post" class="demoForm" id="demoForm">
     
     <fieldset>
-        <legend>Demo: Checkboxes Sharing Same Name</legend>
+        <legend>Check Yourself Carefully to Save Yourself and Others</legend>
     
     <p>Select which and which symptoms \nyou are feeling at this time.</p>
     
@@ -58,13 +63,24 @@ and open the template in the editor.
     
 </form>
         <div id="report"></div>
+        <div id="datasets">
+            <p>Some useful help online:
+                <a href="https://www.cdc.gov/coronavirus/2019-ncov/cases-updates/testing-in-us.html">Coronavirus Disease 2019 (COVID-19)</a><br>
+                <a href="https://www.who.int/docs/default-source/coronaviruse/situation-reports/20200531-covid-19-sitrep-132.pdf?sfvrsn=d9c2eaef_2">Coronavirus disease (COVID-19) Situation Report–132(Download document)</a><br>
+        <a href="https://multimedia.scmp.com/infographics/news/china/article/3047038/wuhan-virus/index.html">Coronavirus: the disease
+Covid-19 explained</a>
+        
+        </div>        
+        
 
         <script type="text/javascript" src="jquery.js"></script>
     <script type="text/javascript">
 var ixi=0;
 var sports = document.forms['demoForm'].elements[ 'sports[]' ];
 var x = document.getElementById("report");
-var xx1={};
+var xx1=new Array(16);
+for(var dx=0;dx<16;dx=dx+1)
+    xx1[dx]="0";
 
 
 // using reference to sports obtained above
@@ -78,29 +94,58 @@ function doSomething() {
         ixi=ixi+1;
         //alert( this.value );
         var xx = this.value;
-        xx =""+xx[xx.length-1];
-        if((xx[xx.length-2])==="1")
-            xx="1"+xx;
+        var xxx =""+xx[xx.length-1];
+        if((xx[xx.length-2])==='1')
+            xxx="1"+xxx;
         
-        alert(xx1);
-        if(ixi>5&&parseInt(xx1)<"9"){
+        xx1[parseInt(xxx)]=xxx;
+        
+            
+ if(ixi>5&&!cont(xx1,"9")){
             x.style.fontsize= "40px";
             x.style.fontstyle= "bold";
             x.style.color= "blue";
         x.innerHTML ="May be you should go for test.";
 }
-else if(parseInt(xx1)>9)
+if(cont(xx1,"9"))
 {
     x.style.color= "red";
-        x.innerHTML ="You definitely should go for test.";
+    x.innerHTML ="You definitely should go for test.";
 }
-    } else {
-        x.innerHTML ="";
-       ixi=ixi-1;
     }
+    else{
+        
+       ixi=ixi-1;
+       xx1[parseInt(xxx)]="0";
+       if(ixi<=5){
+           if(!cont(xx1,"9"))
+           x.innerHTML ="";
+       
+   }
+    if(cont(xx1,"9"))
+    {
+        if(ixi<=5)
+            x.innerHTML ="";
+        else{
+            x.style.fontsize= "40px";
+            x.style.fontstyle= "bold";
+            x.style.color= "blue";
+        x.innerHTML ="May be you should go for test.";
+        }
+    }
+    }  
     //alert( ixi );
     
 }
+
+function cont(z, t){
+    for(var h=0; h<z.length;h=h+1){
+        if(parseInt(z[h])>parseInt(t))
+            return true;
+    }
+    return false;
+}
+
 
 </script>
     </body>
